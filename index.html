@@ -79,6 +79,12 @@
       margin-bottom: 30px;
     }
 
+    /* 전화 링크 색상 제거 */
+    a, a:link, a:visited, a:hover, a:active {
+      color: #fff;
+      text-decoration: none;
+    }
+
     /* 모바일 전용 */
     @media (max-width: 480px) {
       .coupon-box {
@@ -108,7 +114,7 @@
 
   <div id="note-area">
     이 쿠폰은 '챔피언 시흥은계점'에서만 사용이 가능합니다.<br>
-    문의 사항: 0507-1364-9056
+    문의 사항: <a href="tel:050713649056">0507-1364-9056</a>
   </div>
 
   <script>
