@@ -14,16 +14,17 @@
     font-size: 36px;
     color: #007bff;
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 10px;
-    margin-top: 20px; 
   }
   .subtext {
-  text-align: center;
-  font-size: 36px;     /* 폰트 크게 */
-  font-weight: bold;   /* 굵게 */
-  color: #333;
-  margin-bottom: 30px;
-}
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
 
   #coupons-container {
     overflow-y: auto;
@@ -38,7 +39,7 @@
     max-width: none;
     margin: 0 auto 30px auto;
     background-color: white;
-    border: 5px solid #005bac;
+    border: 4px solid #005bac;
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
@@ -56,10 +57,17 @@
     object-fit: contain;
   }
 
+  /* 모바일 전용 */
   @media (max-width: 480px) {
     .coupon-box {
       max-width: 95vw;
+      height: 90vh; /* 화면 높이 90% 만큼 세로 꽉 채우기 */
       padding: 10px;
+    }
+    .coupon-img {
+      height: 100%; /* 이미지가 박스 높이에 꽉 차도록 */
+      width: auto;  /* 비율 유지 */
+      object-fit: contain;
     }
   }
 </style>
