@@ -4,11 +4,13 @@
 <meta charset="UTF-8" />
 <title>챔피언 시흥은계점</title>
 <style>
-  body {
-    font-family: '맑은 고딕', sans-serif;
-    background-color: #35374b; /* 남색 계열 색상 코드 */
-    color: #fff; /* 글자가 잘 보이도록 흰색으로 변경 권장 */
+  html, body {
+    height: 100%;
+    margin: 0;
     padding: 20px;
+    font-family: '맑은 고딕', sans-serif;
+    background-color: #35374b; /* 남색 */
+    color: #fff;
   }
   h1 {
     font-size: 36px;
@@ -27,7 +29,6 @@
   }
 
   #coupons-container {
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     padding: 0 10px;
@@ -56,44 +57,42 @@
     border-radius: 10px;
     object-fit: contain;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-
-    /* 모바일 꾹누르기 방지 */
-    -webkit-touch-callout: none; /* iOS 꾹 누르기 메뉴 차단 */
+    -webkit-touch-callout: none;
     user-select: none;
     -webkit-user-drag: none;
   }
 
   /* 특이사항 영역 */
   #note-area {
-    margin-top: 20px;
+    margin-top: 0;
     font-size: 22px;
     font-weight: 600;
     line-height: 1.4;
     text-align: center;
-    white-space: pre-line; /* 줄바꿈 처리 */
+    white-space: pre-line;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     color: #fff;
+    margin-bottom: 30px;
   }
 
   /* 모바일 전용 */
   @media (max-width: 480px) {
     .coupon-box {
       max-width: 95vw;
-      height: 90vh;
       padding: 10px;
+      min-height: auto;
     }
     .coupon-img {
-      height: 100%;
-      width: auto;
+      height: auto;
+      width: 100%;
       object-fit: contain;
     }
     #note-area {
       font-size: 18px;
       max-width: 90vw;
       padding: 0 10px;
-      margin-top: 1px;
     }
   }
 </style>
@@ -145,17 +144,10 @@
       if (couponBox) container.appendChild(couponBox);
     });
 
-    // 모바일 꾹 누르기 저장 방지 이벤트 추가
+    // 이미지 저장 및 터치 롱프레스 방지
     document.querySelectorAll('.coupon-img').forEach(img => {
-      img.addEventListener('touchstart', e => e.preventDefault());
       img.addEventListener('contextmenu', e => e.preventDefault());
-    });
-
-    // 우클릭 메뉴도 쿠폰 이미지에선 막기
-    document.addEventListener('contextmenu', function(e) {
-      if(e.target.classList.contains('coupon-img')) {
-        e.preventDefault();
-      }
+      img.addEventListener('touchstart', e => e.preventDefault());
     });
   </script>
 </body>
