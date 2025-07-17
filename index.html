@@ -14,169 +14,72 @@
     font-size: 36px;
     color: #005bac;
     text-align: center;
-    margin-bottom: 30px;
-    position: relative;
+    margin-bottom: 10px;
   }
-
-  /* 관리자 로그인용 숨겨진 버튼 (모바일용) */
-  #admin-button {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 60px;
-    height: 30px;
-    background-color: transparent; /* 배경 완전 투명 */
-    border: none;                  /* 테두리 없음 */
-    opacity: 0;                   /* 완전 투명 */
-    cursor: pointer;
-    z-index: 9999;
+  .subtext {
+    text-align: center;
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 20px;
   }
 
   #coupons-container {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  padding: 0 10px;
-  box-sizing: border-box;
-  /* gap 대신 margin-bottom으로 간격 조절 */
-}
-
-.coupon-box {
-  width: 100%;
-  max-width: none;  /* 최대 너비 제한 해제 */
-  margin: 0 auto 30px auto;  /* 아래만 30px 간격 */
-  background-color: white;
-  border: 2px solid #005bac;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 300px;
-}
-
-.coupon-img {
-  width: 100%;      /* 가로 꽉 채우기 */
-  height: auto;     /* 세로 비율 유지 */
-  border-radius: 10px;
-  object-fit: contain; /* 이미지 비율 유지하면서 박스 내에 맞춤 */
-  margin-bottom: 20px;
-}
-
-  .button-container {
+    overflow-y: auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .coupon-box {
     width: 100%;
-    gap: 10px;
-  }
-  .btn {
-    flex: 1;
-    padding: 12px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
-    transition: background-color 0.3s ease;
-    user-select: none;
-  }
-  .btn-use {
-    background-color: #28a745;
-  }
-  .btn-use:hover:not(:disabled) {
-    background-color: #218838;
-  }
-  .btn-use:disabled {
-    background-color: #6c757d;
-    cursor: default;
-  }
-  .btn-link {
-    background-color: #007bff;
-    text-decoration: none;
-    text-align: center;
-    line-height: 36px;
-  }
-  .btn-link:hover {
-    background-color: #0069d9;
+    max-width: none;
+    margin: 0 auto 30px auto;
+    background-color: white;
+    border: 2px solid #005bac;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 300px;
   }
 
-  /* 관리자 메뉴 */
-  #admin-panel {
-    display: none;
-    margin-top: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-  .admin-btn {
-    background-color: #ff9800;
-    margin: 10px;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
-    font-size: 18px;
-  }
-
-  /* 이미지 없는 쿠폰 박스 숨기기용 클래스 (필요 시 사용) */
-  .no-img {
-    display: none !important;
+  .coupon-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
   }
 
   @media (max-width: 480px) {
-    #coupons-container {
-      max-height: 90vh;
-      gap: 20px;
-    }
     .coupon-box {
       max-width: 95vw;
       padding: 10px;
-    }
-    .btn {
-      font-size: 16px;
-      padding: 10px;
-      margin: 0 5px;
-    }
-    .btn-link {
-      line-height: normal;
-      padding-top: 12px;
-      padding-bottom: 12px;
     }
   }
 </style>
 </head>
 <body>
-  <h1>
-    챔피언 시흥은계점 키즈카페입니다! 😊
-    <button id="admin-button" onclick="showLogin()" aria-label="관리자 로그인"></button>
-  </h1>
+  <h1>챔피언 시흥은계점 키즈카페입니다! 😊</h1>
+  <p class="subtext">사용 가능한 쿠폰입니다.</p>
 
   <div id="coupons-container"></div>
 
-  <!-- 관리자 메뉴 -->
-  <div id="admin-panel">
-    <h3>🛠 관리자 메뉴</h3>
-    <button class="admin-btn" onclick="resetCurrentDevice()">📱 현재 기기 쿠폰 재사용</button>
-    <button class="admin-btn" onclick="alert('⚠ 전체 기기 초기화는 서버가 필요합니다.')">🌐 전체 기기 쿠폰 재사용 안내</button>
-  </div>
-
   <script>
-    // 쿠폰 데이터 배열 (이미지 없으면 숨김)
     const coupons = [
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202025-07-16%20174154.png?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" }, // 이미지 없으면 숨김
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
-      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true", link: "https://map.naver.com/p/entry/place/1221821767" },
+      { img: "https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true" },
+      { img: "" },
+      { img: "" },
+      { img: "" },
+      { img: "" },
+      { img: "" },
+      { img: "" },
+      { img: "" },
+      { img: "" },
+      { img: "" },
     ];
 
     const container = document.getElementById('coupons-container');
@@ -193,90 +96,13 @@
       img.alt = `쿠폰 이미지 ${index + 1}`;
       box.appendChild(img);
 
-      const btnContainer = document.createElement('div');
-      btnContainer.className = 'button-container';
-
-      const useBtn = document.createElement('button');
-      useBtn.className = 'btn btn-use';
-      useBtn.textContent = '쿠폰 사용하기';
-
-      // 쿠폰 사용 시 비밀번호 확인 및 상태 저장 (기기별 localStorage)
-      useBtn.onclick = function() {
-        if (useBtn.disabled) {
-          alert('이 기기에서는 이미 쿠폰을 사용하셨습니다.');
-          return;
-        }
-        const password = prompt('쿠폰 사용을 위해 매장 비밀번호를 입력하세요:');
-        if (password === null) return;
-        if (password === '1234') {
-          alert('쿠폰이 사용되었습니다!');
-          useBtn.disabled = true;
-          useBtn.textContent = '사용 완료';
-          useBtn.style.backgroundColor = '#6c757d';
-          useBtn.style.cursor = 'default';
-          localStorage.setItem(`couponUsed_${index}`, 'true');
-        } else {
-          alert('비밀번호가 틀렸습니다.');
-        }
-      };
-
-      // 페이지 로드 시 사용 여부 체크
-      if(localStorage.getItem(`couponUsed_${index}`) === 'true'){
-        useBtn.disabled = true;
-        useBtn.textContent = '사용 완료';
-        useBtn.style.backgroundColor = '#6c757d';
-        useBtn.style.cursor = 'default';
-      }
-
-      btnContainer.appendChild(useBtn);
-
-      const linkBtn = document.createElement('a');
-      linkBtn.className = 'btn btn-link';
-      linkBtn.href = coupon.link;
-      linkBtn.target = '_blank';
-      linkBtn.textContent = '사이트로 이동';
-      btnContainer.appendChild(linkBtn);
-
-      box.appendChild(btnContainer);
-
       return box;
     }
 
-    // 쿠폰 10개까지 생성 및 container에 추가
     coupons.slice(0, 10).forEach((coupon, idx) => {
       const couponBox = createCouponBox(coupon, idx);
-      if(couponBox) container.appendChild(couponBox);
+      if (couponBox) container.appendChild(couponBox);
     });
-
-    // 관리자 로그인 함수
-    function showLogin() {
-      const id = prompt("관리자 아이디를 입력하세요:");
-      if (id === null) return;
-      const pw = prompt("비밀번호를 입력하세요:");
-      if (pw === null) return;
-      if (id === "champion224" && pw === "1234") {
-        alert("관리자 로그인 성공!");
-        document.getElementById("admin-panel").style.display = "block";
-      } else {
-        alert("관리자 인증 실패");
-      }
-    }
-
-    // 관리자 로그인 단축키 (Ctrl + I)
-    document.addEventListener("keydown", function(e){
-      if(e.ctrlKey && e.key.toLowerCase() === "i"){
-        showLogin();
-      }
-    });
-
-    // 관리자용 쿠폰 사용 초기화 (현재 기기만)
-    function resetCurrentDevice() {
-      for(let i=0; i < 10; i++){
-        localStorage.removeItem(`couponUsed_${i}`);
-      }
-      alert('현재 기기의 쿠폰 사용 기록이 모두 초기화되었습니다.');
-      location.reload();
-    }
   </script>
 </body>
 </html>
