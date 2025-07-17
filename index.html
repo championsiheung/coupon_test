@@ -1,101 +1,107 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<title>챔피언 시흥은계점</title>
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 20px;
-    font-family: '맑은 고딕', sans-serif;
-    background-color: #35374b; /* 남색 */
-    color: #fff;
-  }
-  h1 {
-    font-size: 36px;
-    color: #fff;
-    text-align: center; 
-    /*margin-top: 60px;*/
-    margin-bottom: 10px;
-  }
-  .subtext {
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: #fff;
-    margin-top: 10px;
-    margin-bottom: 30px;
-  }
-
-  #coupons-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-
-  .coupon-box {
-    width: 100%;
-    max-width: none;
-    margin: 0 auto 5px auto; /* 기존 30px → 5px로 아주 좁게 */
-    background-color: #35374b;
-    border: 4px solid #35374b;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 300px;
-  }
-
-  .coupon-img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: contain;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    -webkit-touch-callout: none;
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-
-  /* 특이사항 영역 */
-  #note-area {
-    margin-top: 5px; /* 기존 20px → 5px로 좁게 */
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.4;
-    text-align: center;
-    white-space: pre-line;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    color: #fff;
-    margin-bottom: 30px;
-  }
-
-  /* 모바일 전용 */
-  @media (max-width: 480px) {
-    .coupon-box {
-      max-width: 95vw;
-      padding: 10px;
-      min-height: auto;
+  <meta charset="UTF-8" />
+  <title>챔피언 시흥은계점</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 20px;
+      font-family: '맑은 고딕', sans-serif;
+      background-color: #35374b;
+      color: #fff;
     }
-    .coupon-img {
-      height: auto;
+
+    h1 {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtext {
+      text-align: center;
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+
+    #coupons-container {
+      display: flex;
+      flex-direction: column;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    .coupon-box {
       width: 100%;
+      max-width: none;
+      margin: 0 auto 5px auto;
+      background-color: #35374b;
+      border: 4px solid #35374b;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 300px;
+    }
+
+    .coupon-img,
+    .coupon-video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       object-fit: contain;
     }
-    #note-area {
-      font-size: 18px;
-      max-width: 90vw;
-      padding: 0 10px;
+
+    .coupon-img {
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
     }
-  }
-</style>
+
+    .coupon-video {
+      max-height: 400px;
+    }
+
+    #note-area {
+      margin-top: 5px;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+      white-space: pre-line;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 480px) {
+      .coupon-box {
+        max-width: 95vw;
+        padding: 10px;
+        min-height: auto;
+      }
+
+      .coupon-img,
+      .coupon-video {
+        width: 100%;
+        height: auto;
+      }
+
+      #note-area {
+        font-size: 18px;
+        max-width: 90vw;
+        padding: 0 10px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>챔피언 시흥은계점 키즈카페입니다! 😊</h1>
@@ -110,31 +116,44 @@
 
   <script>
     const coupons = [
-      { img: "https://github.com/championsiheung/new/blob/main/KakaoTalk_20250717_175716840.jpg?raw=true" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
+      {
+        img: ""
+      },
+      {
+        video: "https://github.com/championsiheung/new/raw/refs/heads/main/test%20video.mp4"
+      },
+      {
+        img: ""
+      }
     ];
 
     const container = document.getElementById('coupons-container');
 
     function createCouponBox(coupon, index) {
-      if (!coupon.img) return null;
+      if (!coupon.img && !coupon.video) return null;
 
       const box = document.createElement('div');
       box.className = 'coupon-box';
 
-      const img = document.createElement('img');
-      img.className = 'coupon-img';
-      img.src = coupon.img;
-      img.alt = `쿠폰 이미지 ${index + 1}`;
-      box.appendChild(img);
+      if (coupon.img) {
+        const img = document.createElement('img');
+        img.className = 'coupon-img';
+        img.src = coupon.img;
+        img.alt = `쿠폰 이미지 ${index + 1}`;
+        img.addEventListener('contextmenu', e => e.preventDefault());
+        img.addEventListener('touchstart', e => e.preventDefault());
+        box.appendChild(img);
+      }
+
+      if (coupon.video) {
+        const video = document.createElement('video');
+        video.className = 'coupon-video';
+        video.src = coupon.video;
+        video.controls = true;
+        video.playsInline = true;
+        video.setAttribute("controlsList", "nodownload");
+        box.appendChild(video);
+      }
 
       return box;
     }
@@ -142,12 +161,6 @@
     coupons.slice(0, 10).forEach((coupon, idx) => {
       const couponBox = createCouponBox(coupon, idx);
       if (couponBox) container.appendChild(couponBox);
-    });
-
-    // 이미지 저장 및 터치 롱프레스 방지
-    document.querySelectorAll('.coupon-img').forEach(img => {
-      img.addEventListener('contextmenu', e => e.preventDefault());
-      img.addEventListener('touchstart', e => e.preventDefault());
     });
   </script>
 </body>
