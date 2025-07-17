@@ -56,6 +56,14 @@
     border-radius: 10px;
     object-fit: contain;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: 12px;
+  }
+
+  .coupon-note {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
   }
 
   /* 모바일 전용 */
@@ -69,6 +77,7 @@
       height: 100%; /* 이미지가 박스 높이에 꽉 차도록 */
       width: auto;  /* 비율 유지 */
       object-fit: contain;
+      margin-bottom: 12px;
     }
   }
 </style>
@@ -81,16 +90,19 @@
 
   <script>
     const coupons = [
-      { img: "https://github.com/championsiheung/new/blob/main/KakaoTalk_20250717_175716840.jpg?raw=true" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
-      { img: "" },
+      { 
+        img: "https://github.com/championsiheung/new/blob/main/KakaoTalk_20250717_175716840.jpg?raw=true",
+        note: "특이사항: 매장 직원에게 쿠폰 사용을 꼭 확인받아주세요."
+      },
+      { img: "", note: "" },
+      { img: "", note: "" },
+      { img: "", note: "" },
+      { img: "", note: "" },
+      { img: "", note: "" },
+      { img: "", note: "" },
+      { img: "", note: "" },
+      { img: "", note: "" },
+      { img: "", note: "" },
     ];
 
     const container = document.getElementById('coupons-container');
@@ -106,6 +118,13 @@
       img.src = coupon.img;
       img.alt = `쿠폰 이미지 ${index + 1}`;
       box.appendChild(img);
+
+      if (coupon.note && coupon.note.trim() !== "") {
+        const noteP = document.createElement('p');
+        noteP.className = 'coupon-note';
+        noteP.textContent = coupon.note;
+        box.appendChild(noteP);
+      }
 
       return box;
     }
