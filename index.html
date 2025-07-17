@@ -125,65 +125,65 @@
   </div>
 
   <script>
-    // 페이지 로드 시 쿠폰 사용 상태 체크
-    window.onload = function () {
-      if (localStorage.getItem('couponUsed') === 'true') {
-        updateCouponUsedUI();
-      }
-    };
+  // 페이지 로드 시 쿠폰 사용 상태 체크
+  window.onload = function () {
+    if (localStorage.getItem('couponUsed') === 'true') {
+      updateCouponUsedUI();
+    }
+  };
 
-    function useCoupon() {
-      if (localStorage.getItem('couponUsed') === 'true') {
-        alert('이 기기에서는 이미 쿠폰을 사용하셨습니다.');
-        return;
-      }
+  function useCoupon() {
+    if (localStorage.getItem('couponUsed') === 'true') {
+      alert('이 기기에서는 이미 쿠폰을 사용하셨습니다.');
+      return;
+    }
 
-      const password = prompt('쿠폰 사용을 위해 매장 비밀번호를 입력하세요:');
-      const correctPassword = '1234';
+    const password = prompt('쿠폰 사용을 위해 매장 비밀번호를 입력하세요:');
+    const correctPassword = '1234';
 
-      if (password === null) return;
+    if (password === null) return;
 
-      if (password === correctPassword) {
-        alert('비밀번호 확인 완료! 쿠폰이 사용되었습니다.');
-        localStorage.setItem('couponUsed', 'true');
-        updateCouponUsedUI();
+    if (password === correctPassword) {
+      alert('비밀번호 확인 완료! 쿠폰이 사용되었습니다.');
+      localStorage.setItem('couponUsed', 'true');
+      updateCouponUsedUI();
+    } else {
+      alert('비밀번호가 틀렸습니다.');
+    }
+  }
+
+  function updateCouponUsedUI() {
+    const btn = document.querySelector('.btn-use');
+    btn.disabled = true;
+    btn.textContent = '사용 완료';
+    btn.style.backgroundColor = '#6c757d';
+    btn.style.cursor = 'default';
+  }
+
+  function resetCurrentDevice() {
+    localStorage.removeItem('couponUsed');
+    const btn = document.querySelector('.btn-use');
+    btn.disabled = false;
+    btn.textContent = '쿠폰 사용하기';
+    btn.style.backgroundColor = '#28a745';
+    btn.style.cursor = 'pointer';
+    alert('현재 기기의 쿠폰 상태가 초기화되었습니다.');
+  }
+
+  // ✅ 관리자 로그인 단축키: Ctrl + I
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey && e.key.toLowerCase() === "i") {
+      const id = prompt("관리자 아이디를 입력하세요:");
+      const pw = prompt("비밀번호를 입력하세요:");
+
+      if (id === "champion224" && pw === "1234") {
+        alert("관리자 로그인 성공!");
+        document.getElementById("admin-panel").style.display = "block";
       } else {
-        alert('비밀번호가 틀렸습니다.');
+        alert("관리자 인증 실패");
       }
     }
-
-    function updateCouponUsedUI() {
-      const btn = document.querySelector('.btn-use');
-      btn.disabled = true;
-      btn.textContent = '사용 완료';
-      btn.style.backgroundColor = '#6c757d';
-      btn.style.cursor = 'default';
-    }
-
-    function resetCurrentDevice() {
-      localStorage.removeItem('couponUsed');
-      const btn = document.querySelector('.btn-use');
-      btn.disabled = false;
-      btn.textContent = '쿠폰 사용하기';
-      btn.style.backgroundColor = '#28a745';
-      btn.style.cursor = 'pointer';
-      alert('현재 기기의 쿠폰 상태가 초기화되었습니다.');
-    }
-
-    // ✅ 관리자 로그인 단축키 (Ctrl + Alt + L)
-    document.addEventListener("keydown", function (e) {
-      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "l") {
-        const id = prompt("관리자 아이디를 입력하세요:");
-        const pw = prompt("비밀번호를 입력하세요:");
-
-        if (id === "champion224" && pw === "1234") {
-          alert("관리자 로그인 성공!");
-          document.getElementById("admin-panel").style.display = "block";
-        } else {
-          alert("관리자 인증 실패");
-        }
-      }
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
