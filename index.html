@@ -15,6 +15,20 @@
     h1 {
       font-size: 36px;
       color: #005bac;
+      position: relative;
+    }
+
+    /* 모바일용 관리자 진입 버튼 */
+    #admin-button {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      width: 25px;
+      height: 25px;
+      background-color: transparent;
+      border: none;
+      opacity: 0; /* 관리자만 아는 숨김 버튼 */
+      z-index: 999;
     }
 
     .coupon-box {
@@ -102,7 +116,10 @@
   </style>
 </head>
 <body>
-  <h1>챔피언 시흥은계점 키즈카페입니다! 😊</h1>
+  <h1>
+    챔피언 시흥은계점 키즈카페입니다! 😊
+    <button id="admin-button" onclick="showLogin()" aria-label="관리자 로그인"></button>
+  </h1>
   <p>이곳은 챔피언 시흥은계점에서 만든 첫 웹사이트입니다.</p>
 
   <div class="coupon-box">
@@ -119,60 +136,66 @@
 
   <!-- 관리자 메뉴 -->
   <div id="admin-panel">
-    <h3>관리자 메뉴</h3>
+    <h3>🛠 관리자 메뉴</h3>
     <button class="btn admin-btn" onclick="resetCurrentDevice()">📱 현재 기기 쿠폰 재사용</button>
-    <button class="btn admin-btn" onclick="alert('⚠️ 모든 기기의 쿠폰을 초기화하려면 서버가 필요합니다.')">🌐 모든 쿠폰 재사용 안내</button>
+    <button class="btn admin-btn" onclick="alert('⚠ 전체 기기 초기화는 서버가 필요합니다.')">🌐 전체 기기 쿠폰 재사용 안내</button>
   </div>
 
   <script>
-  // 페이지 로드 시 쿠폰 사용 상태 체크
-  window.onload = function () {
-    if (localStorage.getItem('couponUsed') === 'true') {
-      updateCouponUsedUI();
+    // 페이지 로드시 쿠폰 사용 상태 반영
+    window.onload = function () {
+      if (localStorage.getItem('couponUsed') === 'true') {
+        updateCouponUsedUI();
+      }
+    };
+
+    function useCoupon() {
+      if (localStorage.getItem('couponUsed') === 'true') {
+        alert('이 기기에서는 이미 쿠폰을 사용하셨습니다.');
+        return;
+      }
+
+      const password = prompt('쿠폰 사용을 위해 매장 비밀번호를 입력하세요:');
+      const correctPassword = '1234';
+
+      if (password === null) return;
+
+      if (password === correctPassword) {
+        alert('비밀번호 확인 완료! 쿠폰이 사용되었습니다.');
+        localStorage.setItem('couponUsed', 'true');
+        updateCouponUsedUI();
+      } else {
+        alert('비밀번호가 틀렸습니다.');
+      }
     }
-  };
 
-  function useCoupon() {
-    if (localStorage.getItem('couponUsed') === 'true') {
-      alert('이 기기에서는 이미 쿠폰을 사용하셨습니다.');
-      return;
+    function updateCouponUsedUI() {
+      const btn = document.querySelector('.btn-use');
+      btn.disabled = true;
+      btn.textContent = '사용 완료';
+      btn.style.backgroundColor = '#6c757d';
+      btn.style.cursor = 'default';
     }
 
-    const password = prompt('쿠폰 사용을 위해 매장 비밀번호를 입력하세요:');
-    const correctPassword = '1234';
-
-    if (password === null) return;
-
-    if (password === correctPassword) {
-      alert('비밀번호 확인 완료! 쿠폰이 사용되었습니다.');
-      localStorage.setItem('couponUsed', 'true');
-      updateCouponUsedUI();
-    } else {
-      alert('비밀번호가 틀렸습니다.');
+    function resetCurrentDevice() {
+      localStorage.removeItem('couponUsed');
+      const btn = document.querySelector('.btn-use');
+      btn.disabled = false;
+      btn.textContent = '쿠폰 사용하기';
+      btn.style.backgroundColor = '#28a745';
+      btn.style.cursor = 'pointer';
+      alert('현재 기기의 쿠폰 상태가 초기화되었습니다.');
     }
-  }
 
-  function updateCouponUsedUI() {
-    const btn = document.querySelector('.btn-use');
-    btn.disabled = true;
-    btn.textContent = '사용 완료';
-    btn.style.backgroundColor = '#6c757d';
-    btn.style.cursor = 'default';
-  }
+    // ✅ 관리자 로그인 (Ctrl + I 단축키)
+    document.addEventListener("keydown", function (e) {
+      if (e.ctrlKey && e.key.toLowerCase() === "i") {
+        showLogin();
+      }
+    });
 
-  function resetCurrentDevice() {
-    localStorage.removeItem('couponUsed');
-    const btn = document.querySelector('.btn-use');
-    btn.disabled = false;
-    btn.textContent = '쿠폰 사용하기';
-    btn.style.backgroundColor = '#28a745';
-    btn.style.cursor = 'pointer';
-    alert('현재 기기의 쿠폰 상태가 초기화되었습니다.');
-  }
-
-  // ✅ 관리자 로그인 단축키: Ctrl + I
-  document.addEventListener("keydown", function (e) {
-    if (e.ctrlKey && e.key.toLowerCase() === "i") {
+    // ✅ 로그인 공통 함수 (모바일/PC 공용)
+    function showLogin() {
       const id = prompt("관리자 아이디를 입력하세요:");
       const pw = prompt("비밀번호를 입력하세요:");
 
@@ -183,7 +206,6 @@
         alert("관리자 인증 실패");
       }
     }
-  });
-</script>
+  </script>
 </body>
 </html>
