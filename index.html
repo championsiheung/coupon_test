@@ -24,6 +24,59 @@
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+
+    /* 쿠폰 박스 */
+    .coupon-box {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      border: 2px solid #005bac;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .coupon-img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn {
+      flex: 1;
+      margin: 0 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      color: white;
+    }
+
+    .btn-use {
+      background-color: #28a745;
+    }
+
+    .btn-use:hover {
+      background-color: #218838;
+    }
+
+    .btn-link {
+      background-color: #007bff;
+    }
+
+    .btn-link:hover {
+      background-color: #0069d9;
+    }
+
   </style>
 </head>
 <body>
@@ -31,5 +84,17 @@
   <p>이곳은 챔피언 시흥은계점에서 만든 첫 웹사이트입니다.</p>
   <img src="https://github.com/championsiheung/new/blob/main/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202025-07-16%20174154.png?raw=true" alt="환영 이미지" />
   <p>이 이미지는 나중에 바꿀 수 있어요!</p>
+
+  <!-- ✅ 쿠폰 영역 시작 -->
+  <div class="coupon-box">
+    <img class="coupon-img" src="https://via.placeholder.com/400x200?text=쿠폰+이미지" alt="쿠폰 이미지">
+
+    <div class="button-container">
+      <button class="btn btn-use" onclick="alert('쿠폰이 사용되었습니다!')">쿠폰 사용하기</button>
+      <a class="btn btn-link" href="https://championsiheung.com" target="_blank">사이트로 이동</a>
+    </div>
+  </div>
+  <!-- ✅ 쿠폰 영역 끝 -->
+
 </body>
 </html>
