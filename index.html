@@ -11,15 +11,27 @@
       text-align: center;
       padding: 50px;
     }
+
     h1 {
       font-size: 36px;
       color: #005bac;
+      position: relative;
     }
-    p {
-      font-size: 18px;
-      margin-bottom: 30px;
+
+    /* 투명 관리자 진입 버튼 */
+    #admin-trigger {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      opacity: 0;
     }
-    /* 쿠폰 박스 */
+
     .coupon-box {
       width: 100%;
       max-width: 800px;
@@ -31,6 +43,7 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
       box-sizing: border-box;
     }
+
     .coupon-img {
       width: 100%;
       height: auto;
@@ -39,42 +52,56 @@
       object-fit: cover;
       display: block;
     }
+
     .button-container {
       display: flex;
       justify-content: space-between;
       margin-top: 20px;
     }
+
     .btn {
       flex: 1;
       margin: 0 10px;
       padding: 12px 20px;
-      font-size: 25px;
+      font-size: 20px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       color: white;
     }
+
     .btn-use {
       background-color: #28a745;
     }
     .btn-use:hover {
       background-color: #218838;
     }
+
     .btn-link {
       background-color: #007bff;
       text-decoration: none;
-      display: inline-block;
       text-align: center;
-      line-height: 20px;
       padding: 12px 20px;
       color: white;
       border-radius: 8px;
     }
+
     .btn-link:hover {
       background-color: #0069d9;
     }
-    /* 모바일 대응 */
+
+    /* 관리자 메뉴 */
+    #admin-panel {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .admin-btn {
+      background-color: #ff9800;
+      margin: 10px;
+    }
+
     @media (max-width: 480px) {
       .coupon-box {
         max-width: 95vw;
@@ -89,7 +116,10 @@
   </style>
 </head>
 <body>
-  <h1>챔피언 시흥은계점 키즈카페입니다! 😊</h1>
+  <h1>
+    챔피언 시흥은계점 키즈카페입니다! 😊
+    <button id="admin-trigger" onclick="showLogin()"></button>
+  </h1>
   <p>이곳은 챔피언 시흥은계점에서 만든 첫 웹사이트입니다.</p>
 
   <div class="coupon-box">
@@ -100,16 +130,25 @@
     />
     <div class="button-container">
       <button class="btn btn-use" onclick="useCoupon()">쿠폰 사용하기</button>
-      <a
-        class="btn btn-link"
-        href="https://map.naver.com/p/entry/place/1221821767"
-        target="_blank"
-        >사이트로 이동</a
-      >
+      <a class="btn btn-link" href="https://map.naver.com/p/entry/place/1221821767" target="_blank">사이트로 이동</a>
     </div>
   </div>
 
+  <!-- 관리자 메뉴 -->
+  <div id="admin-panel">
+    <h3>관리자 메뉴</h3>
+    <button class="btn admin-btn" onclick="resetCurrentDevice()">📱 현재 기기 쿠폰 재사용</button>
+    <button class="btn admin-btn" onclick="alert('⚠ 서버가 없어 전체 기기 초기화는 지원되지 않습니다.\n(모든 쿠폰 상태를 변경하려면 서버 저장 방식이 필요합니다.)')">🌐 모든 기기 쿠폰 재사용</button>
+  </div>
+
   <script>
+    // 페이지 로드 시 쿠폰 사용 상태 체크
+    window.onload = function () {
+      if (localStorage.getItem('couponUsed') === 'true') {
+        updateCouponUsedUI();
+      }
+    };
+
     function useCoupon() {
       if (localStorage.getItem('couponUsed') === 'true') {
         alert('이 기기에서는 이미 쿠폰을 사용하셨습니다.');
@@ -117,35 +156,49 @@
       }
 
       const password = prompt('쿠폰 사용을 위해 매장 비밀번호를 입력하세요:');
-      const correctPassword = '1234'; // 매장 비밀번호로 변경하세요
+      const correctPassword = '1234';
 
-      if (password === null) {
-        return;
-      }
+      if (password === null) return;
 
       if (password === correctPassword) {
         alert('비밀번호 확인 완료! 쿠폰이 사용되었습니다.');
         localStorage.setItem('couponUsed', 'true');
-
-        const btn = document.querySelector('.btn-use');
-        btn.disabled = true;
-        btn.textContent = '사용 완료';
-        btn.style.backgroundColor = '#6c757d';
-        btn.style.cursor = 'default';
+        updateCouponUsedUI();
       } else {
-        alert('비밀번호가 틀렸습니다. 다시 시도해주세요.');
+        alert('비밀번호가 틀렸습니다.');
       }
     }
 
-    window.onload = function () {
-      if (localStorage.getItem('couponUsed') === 'true') {
-        const btn = document.querySelector('.btn-use');
-        btn.disabled = true;
-        btn.textContent = '사용 완료';
-        btn.style.backgroundColor = '#6c757d';
-        btn.style.cursor = 'default';
+    function updateCouponUsedUI() {
+      const btn = document.querySelector('.btn-use');
+      btn.disabled = true;
+      btn.textContent = '사용 완료';
+      btn.style.backgroundColor = '#6c757d';
+      btn.style.cursor = 'default';
+    }
+
+    // 관리자 버튼 클릭 시 로그인 창
+    function showLogin() {
+      const id = prompt('관리자 아이디를 입력하세요:');
+      const pw = prompt('비밀번호를 입력하세요:');
+
+      if (id === 'champion224' && pw === '1234') {
+        alert('관리자 로그인 성공!');
+        document.getElementById('admin-panel').style.display = 'block';
+      } else {
+        alert('관리자 인증 실패');
       }
-    };
+    }
+
+    function resetCurrentDevice() {
+      localStorage.removeItem('couponUsed');
+      const btn = document.querySelector('.btn-use');
+      btn.disabled = false;
+      btn.textContent = '쿠폰 사용하기';
+      btn.style.backgroundColor = '#28a745';
+      btn.style.cursor = 'pointer';
+      alert('현재 기기의 쿠폰 상태가 초기화되었습니다.');
+    }
   </script>
 </body>
 </html>
