@@ -15,6 +15,7 @@
 
     h1 {
       font-size: 36px;
+      color: #fff;
       text-align: center;
       margin-bottom: 10px;
     }
@@ -23,6 +24,7 @@
       text-align: center;
       font-size: 36px;
       font-weight: bold;
+      color: #fff;
       margin-top: 10px;
       margin-bottom: 30px;
     }
@@ -50,25 +52,18 @@
       min-height: 300px;
     }
 
-    .coupon-img,
-    .coupon-video {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      object-fit: contain;
-    }
-
     .coupon-img {
+      width: 100%;
       height: auto;
+      border-radius: 10px;
+      object-fit: contain;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      -webkit-touch-callout: none;
       user-select: none;
       -webkit-user-drag: none;
-      -webkit-touch-callout: none;
     }
 
-    .coupon-video {
-      max-height: 400px;
-    }
-
+    /* 특이사항 */
     #note-area {
       margin-top: 5px;
       font-size: 22px;
@@ -79,22 +74,22 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      color: #fff;
       margin-bottom: 30px;
     }
 
+    /* 모바일 전용 */
     @media (max-width: 480px) {
       .coupon-box {
         max-width: 95vw;
         padding: 10px;
         min-height: auto;
       }
-
-      .coupon-img,
-      .coupon-video {
-        width: 100%;
+      .coupon-img {
         height: auto;
+        width: 100%;
+        object-fit: contain;
       }
-
       #note-area {
         font-size: 18px;
         max-width: 90vw;
@@ -116,44 +111,27 @@
 
   <script>
     const coupons = [
-      {
-        img: ""
-      },
-      {
-        video: "https://github.com/championsiheung/new/raw/refs/heads/main/test%20video.mp4"
-      },
-      {
-        img: ""
-      }
+      { img: "https://raw.githubusercontent.com/championsiheung/new/refs/heads/main/test%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EC%9D%B4%EB%AF%B8%EC%A7%80.gif" }, // GIF 예시
+      { img: "" }, { img: "" }, { img: "" }, { img: "" },
+      { img: "" }, { img: "" }, { img: "" }, { img: "" }, { img: "" },
     ];
 
     const container = document.getElementById('coupons-container');
 
     function createCouponBox(coupon, index) {
-      if (!coupon.img && !coupon.video) return null;
+      if (!coupon.img) return null;
 
       const box = document.createElement('div');
       box.className = 'coupon-box';
 
-      if (coupon.img) {
-        const img = document.createElement('img');
-        img.className = 'coupon-img';
-        img.src = coupon.img;
-        img.alt = `쿠폰 이미지 ${index + 1}`;
-        img.addEventListener('contextmenu', e => e.preventDefault());
-        img.addEventListener('touchstart', e => e.preventDefault());
-        box.appendChild(img);
-      }
+      const img = document.createElement('img');
+      img.className = 'coupon-img';
+      img.src = coupon.img;
+      img.alt = `쿠폰 이미지 ${index + 1}`;
+      box.appendChild(img);
 
-      if (coupon.video) {
-        const video = document.createElement('video');
-        video.className = 'coupon-video';
-        video.src = coupon.video;
-        video.controls = true;
-        video.playsInline = true;
-        video.setAttribute("controlsList", "nodownload");
-        box.appendChild(video);
-      }
+      box.addEventListener('contextmenu', e => e.preventDefault());
+      box.addEventListener('touchstart', e => e.preventDefault());
 
       return box;
     }
