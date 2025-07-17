@@ -2,99 +2,118 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>챔피언 시흥은계점</title>
+  <title>챔피언 시흥은계점 쿠폰</title>
   <style>
     html, body {
       height: 100%;
       margin: 0;
-      padding: 10px;
+      padding: 20px;
       font-family: '맑은 고딕', sans-serif;
       background-color: #35374b;
       color: #fff;
     }
 
     h1 {
-      font-size: 26px;
+      font-size: 36px;
+      color: #fff;
       text-align: center;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     .subtext {
       text-align: center;
-      font-size: 22px;
+      font-size: 36px;
       font-weight: bold;
-      margin: 5px 0 10px;
+      color: #fff;
+      margin-top: 10px;
+      margin-bottom: 30px;
     }
 
     #coupons-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 0;
-      margin: 0;
+      padding: 0 10px;
+      box-sizing: border-box;
     }
 
     .coupon-box {
       width: 100%;
+      max-width: none;
+      margin: 0 auto 5px auto;
       background-color: #35374b;
-      border: 3px solid #35374b;
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: 4px solid #35374b;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 10px;
+      min-height: 300px;
     }
 
     .coupon-img {
       width: 100%;
-      max-height: 200px;
+      height: auto;
+      border-radius: 10px;
       object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       -webkit-touch-callout: none;
       user-select: none;
       -webkit-user-drag: none;
     }
 
+    /* 특이사항 */
     #note-area {
-      font-size: 16px;
+      margin-top: 5px;
+      font-size: 22px;
       font-weight: 600;
       line-height: 1.4;
       text-align: center;
       white-space: pre-line;
-      margin-top: 5px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #fff;
+      margin-bottom: 30px;
     }
 
+    /* 모바일 전용 */
     @media (max-width: 480px) {
-      h1, .subtext {
-        font-size: 18px;
+      .coupon-box {
+        max-width: 95vw;
+        padding: 10px;
+        min-height: auto;
       }
       .coupon-img {
-        max-height: 150px;
+        height: auto;
+        width: 100%;
+        object-fit: contain;
       }
       #note-area {
-        font-size: 14px;
+        font-size: 18px;
+        max-width: 90vw;
         padding: 0 10px;
       }
     }
   </style>
 </head>
 <body>
-  <h1>챔피언 시흥은계점 키즈카페입니다! 😊</h1>
-  <p class="subtext">사용 가능한 쿠폰입니다.</p>
+  <h1>안녕하세요! 챔피언 시흥은계점 키즈카페입니다! 😊</h1>
+  <p class="subtext">아래 쿠폰은 현재 사용 가능한 쿠폰입니다.</p>
 
   <div id="coupons-container"></div>
 
   <div id="note-area">
-    특이사항: 매장 직원에게 쿠폰 사용을 꼭 확인받아주세요.<br>
-    추가 안내 사항도 꼭 읽어주세요.
+    이 쿠폰은 '챔피언 시흥은계점'에서만 사용이 가능합니다.<br>
+    
   </div>
 
   <script>
     const coupons = [
-      { img: "https://raw.githubusercontent.com/championsiheung/new/refs/heads/main/test%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EC%9D%B4%EB%AF%B8%EC%A7%80.gif" }
+      { img: "https://raw.githubusercontent.com/championsiheung/new/refs/heads/main/test%EC%9B%80%EC%A7%81%EC%9D%B4%EB%8A%94%EC%9D%B4%EB%AF%B8%EC%A7%80.gif" }, // GIF 예시
+      { img: "" }, { img: "" }, { img: "" }, { img: "" },
+      { img: "" }, { img: "" }, { img: "" }, { img: "" }, { img: "" },
     ];
 
     const container = document.getElementById('coupons-container');
@@ -109,15 +128,15 @@
       img.className = 'coupon-img';
       img.src = coupon.img;
       img.alt = `쿠폰 이미지 ${index + 1}`;
-
-      img.addEventListener('contextmenu', e => e.preventDefault());
-      img.addEventListener('touchstart', e => e.preventDefault());
-
       box.appendChild(img);
+
+      box.addEventListener('contextmenu', e => e.preventDefault());
+      box.addEventListener('touchstart', e => e.preventDefault());
+
       return box;
     }
 
-    coupons.forEach((coupon, idx) => {
+    coupons.slice(0, 10).forEach((coupon, idx) => {
       const couponBox = createCouponBox(coupon, idx);
       if (couponBox) container.appendChild(couponBox);
     });
