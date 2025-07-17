@@ -21,15 +21,18 @@
     /* 모바일용 관리자 진입 버튼 */
     #admin-button {
       position: absolute;
-      top: 0;
+      top: 10px;
       right: 10px;
-      width: 25px;
-      height: 25px;
-      background-color: transparent;
+      width: 60px;
+      height: 30px;
+      background-color: rgba(0, 0, 0, 0.05); /* 살짝 회색으로 표시 */
       border: none;
-      opacity: 0.2; /* 관리자만 아는 숨김 버튼 */
-      z-index: 999;
+      border-radius: 8px;
+      opacity: 0.4; /* 흐릿하게 보이게 */
+      cursor: pointer;
+      z-index: 9999;
     }
+
 
     .coupon-box {
       width: 100%;
