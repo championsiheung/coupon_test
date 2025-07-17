@@ -15,21 +15,6 @@
     h1 {
       font-size: 36px;
       color: #005bac;
-      position: relative;
-    }
-
-    /* 투명 관리자 진입 버튼 */
-    #admin-trigger {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      opacity: 0;
     }
 
     .coupon-box {
@@ -74,6 +59,7 @@
     .btn-use {
       background-color: #28a745;
     }
+
     .btn-use:hover {
       background-color: #218838;
     }
@@ -116,10 +102,7 @@
   </style>
 </head>
 <body>
-  <h1>
-    챔피언 시흥은계점 키즈카페입니다! 😊
-    <button id="admin-trigger" onclick="showLogin()"></button>
-  </h1>
+  <h1>챔피언 시흥은계점 키즈카페입니다! 😊</h1>
   <p>이곳은 챔피언 시흥은계점에서 만든 첫 웹사이트입니다.</p>
 
   <div class="coupon-box">
@@ -138,7 +121,7 @@
   <div id="admin-panel">
     <h3>관리자 메뉴</h3>
     <button class="btn admin-btn" onclick="resetCurrentDevice()">📱 현재 기기 쿠폰 재사용</button>
-    <button class="btn admin-btn" onclick="alert('⚠ 서버가 없어 전체 기기 초기화는 지원되지 않습니다.\n(모든 쿠폰 상태를 변경하려면 서버 저장 방식이 필요합니다.)')">🌐 모든 기기 쿠폰 재사용</button>
+    <button class="btn admin-btn" onclick="alert('⚠️ 모든 기기의 쿠폰을 초기화하려면 서버가 필요합니다.')">🌐 모든 쿠폰 재사용 안내</button>
   </div>
 
   <script>
@@ -177,19 +160,6 @@
       btn.style.cursor = 'default';
     }
 
-    // 관리자 버튼 클릭 시 로그인 창
-    function showLogin() {
-      const id = prompt('관리자 아이디를 입력하세요:');
-      const pw = prompt('비밀번호를 입력하세요:');
-
-      if (id === 'champion224' && pw === '1234') {
-        alert('관리자 로그인 성공!');
-        document.getElementById('admin-panel').style.display = 'block';
-      } else {
-        alert('관리자 인증 실패');
-      }
-    }
-
     function resetCurrentDevice() {
       localStorage.removeItem('couponUsed');
       const btn = document.querySelector('.btn-use');
@@ -199,6 +169,21 @@
       btn.style.cursor = 'pointer';
       alert('현재 기기의 쿠폰 상태가 초기화되었습니다.');
     }
+
+    // ✅ 관리자 로그인 단축키 (Ctrl + Alt + L)
+    document.addEventListener("keydown", function (e) {
+      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "l") {
+        const id = prompt("관리자 아이디를 입력하세요:");
+        const pw = prompt("비밀번호를 입력하세요:");
+
+        if (id === "champion224" && pw === "1234") {
+          alert("관리자 로그인 성공!");
+          document.getElementById("admin-panel").style.display = "block";
+        } else {
+          alert("관리자 인증 실패");
+        }
+      }
+    });
   </script>
 </body>
 </html>
