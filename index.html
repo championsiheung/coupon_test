@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>챔피언 시흥은계점</title>
   <style>
     body {
@@ -19,11 +19,10 @@
       font-size: 18px;
       margin-bottom: 30px;
     }
-
     /* 쿠폰 박스 */
     .coupon-box {
       width: 100%;
-      max-width: 600px;
+      max-width: 800px; /* 최대 너비 확대 */
       margin: 40px auto;
       background-color: white;
       border: 2px solid #005bac;
@@ -32,7 +31,6 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
       box-sizing: border-box;
     }
-
     .coupon-img {
       width: 100%;
       height: auto;
@@ -41,33 +39,28 @@
       object-fit: cover;
       display: block;
     }
-
     .button-container {
       display: flex;
       justify-content: space-between;
       margin-top: 20px;
     }
-
     .btn {
       flex: 1;
       margin: 0 10px;
       padding: 12px 20px;
-      font-size: 16px;
+      font-size: 20px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       color: white;
     }
-
     .btn-use {
       background-color: #28a745;
     }
-
     .btn-use:hover {
       background-color: #218838;
     }
-
     .btn-link {
       background-color: #007bff;
       text-decoration: none;
@@ -78,15 +71,13 @@
       color: white;
       border-radius: 8px;
     }
-
     .btn-link:hover {
       background-color: #0069d9;
     }
-
     /* 모바일 대응 */
     @media (max-width: 480px) {
       .coupon-box {
-        max-width: 90vw;
+        max-width: 95vw; /* 모바일에서 더 넓게 */
         padding: 10px;
       }
       .btn {
@@ -101,16 +92,23 @@
   <h1>챔피언 시흥은계점 키즈카페입니다! 😊</h1>
   <p>이곳은 챔피언 시흥은계점에서 만든 첫 웹사이트입니다.</p>
 
-  <!-- ✅ 쿠폰 영역 시작 -->
   <div class="coupon-box">
-    <img class="coupon-img" src="https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true" alt="쿠폰 이미지">
-
+    <img
+      class="coupon-img"
+      src="https://github.com/championsiheung/new/blob/main/test%ED%8B%B0%EC%BC%93.jpg?raw=true"
+      alt="쿠폰 이미지"
+    />
     <div class="button-container">
-      <button class="btn btn-use" onclick="alert('쿠폰이 사용되었습니다!')">쿠폰 사용하기</button>
-      <a class="btn btn-link" href="https://map.naver.com/p/entry/place/1221821767" target="_blank">사이트로 이동</a>
+      <button class="btn btn-use" onclick="alert('쿠폰이 사용되었습니다!')">
+        쿠폰 사용하기
+      </button>
+      <a
+        class="btn btn-link"
+        href="https://map.naver.com/p/entry/place/1221821767"
+        target="_blank"
+        >사이트로 이동</a
+      >
     </div>
   </div>
-  <!-- ✅ 쿠폰 영역 끝 -->
-
 </body>
 </html>
