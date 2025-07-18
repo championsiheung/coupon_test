@@ -464,6 +464,49 @@
         toggleBtn.classList.add('active'); // 노란색으로 변경
       }
     });
+
+    // 1. 외부 클릭 시 닫기
+    document.addEventListener('click', (e) => {
+      const isClickInsidePanel = infoPanel.contains(e.target);
+      const isClickOnToggle = toggleBtn.contains(e.target);
+
+      if (!isClickInsidePanel && !isClickOnToggle) {
+        if (infoPanel.style.right === '0px') {
+          infoPanel.style.right = '-740px';
+          toggleBtn.style.right = '0';
+          toggleBtn.textContent = '◀';
+          toggleBtn.classList.remove('active');
+        }
+      }
+    });
+
+    // 2. 터치 슬라이드로 닫기 (모바일)
+    let startX = 0;
+    let isDragging = false;
+
+    infoPanel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+
+    infoPanel.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      let currentX = e.touches[0].clientX;
+      let diffX = currentX - startX;
+
+      if (diffX > 50) { // 오른쪽으로 50px 이상 드래그 시 닫기
+        infoPanel.style.right = '-740px';
+        toggleBtn.style.right = '0';
+      toggleBtn.textContent = '◀';
+        toggleBtn.classList.remove('active');
+        isDragging = false;
+      }
+    });
+
+    infoPanel.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
   </script>
 </body>
 </html>
