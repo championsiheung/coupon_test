@@ -108,7 +108,7 @@
     #info-toggle {
       position: fixed;                /* 화면에 고정 위치, 스크롤해도 움직이지 않음 */
       right: 0;                      /* 화면 오른쪽 끝에 붙음 */
-      top: 7%;                     /* 화면 위에서부터 10% 위치에 배치 */
+      top: 5%;                     /* 화면 위에서부터 10% 위치에 배치 */
       transform: translateY(-50%);   /* 자신 높이의 50%만큼 위로 이동 (즉, 기준점이 중앙으로 이동) */
       background-color: #666a91;     /* 배경색을 짙은 보라빛 회색으로 지정 */
       color: #ffffff;                /* 글자색을 흰색으로 지정 */
@@ -132,9 +132,9 @@
     /* 매장 안내창 */
     #store-info {
       position: fixed;
-      right: -360px;
+      right: -740px;
       top: 0;
-      width: 320px;
+      width: 700px;
       height: 100%;
       background-color: #fff;
       color: #333;
@@ -159,7 +159,7 @@
     }
 
     #store-info h2 {
-      font-size: 24px;
+      font-size: 35px;
       margin-bottom: 10px;
     }
 
@@ -177,7 +177,7 @@
       padding: 20px 15px;          /* 안쪽 여백 */
       margin-bottom: 0;         /* 아래쪽 간격 */
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* 살짝 그림자 */
-      max-width: 600px;            /* 최대 너비 */
+      max-width: 700px;            /* 최대 너비 */
       color: #333;                 /* 텍스트 색상 */
       font-family: '맑은 고딕', sans-serif;
       line-height: 1.6; /* 전체 줄 간격 */
@@ -185,7 +185,7 @@
     }
 
     .section-box p strong {
-      font-size: 18px;
+      font-size: 28px;
       margin-bottom: 12px;
       display: block;
     }
@@ -198,7 +198,7 @@
     }
 
     .section-box ul li {
-      font-size: 16px;
+      font-size: 28px;
       line-height: 1.6;
       color: #333;
       margin-bottom: 0.1em;
@@ -216,14 +216,14 @@
     /* 섹션 제목 */
     #store-info p {
       margin: 0.8em 0 0.3em;
-      font-size: 20px;
+      font-size: 30px;
       font-weight: bold;
       color: #113f6d; /* 진한 파란색 */
     }
 
     /* 운영시간 전용 스타일 */
     .time-section ul li {
-      font-size: 18px;
+      font-size: 28px;
       margin-bottom: 0.3em;
       text-indent: -1.5em;
       padding-left: 1.5em;
@@ -231,7 +231,7 @@
 
     /* 이용 안내 전용 스타일 */
     .notice-section ul li {
-      font-size: 18px;
+      font-size: 28px;
       line-height: 1.6;
       color: #333;
       margin-bottom: 0.5em;
@@ -262,7 +262,7 @@
     }
 
     #price-list li {
-      font-size: 18px;
+      font-size: 28px;
       line-height: 1.5;
       padding-left: 2.5em;       /* 숫자 아이콘 공간 확보 */
       text-indent: -2.5em;      /* 숫자 아이콘 위치 조정 */
@@ -391,13 +391,13 @@
     toggleBtn.addEventListener('click', () => {
       const isOpen = infoPanel.style.right === '0px';
       if (isOpen) {
-        infoPanel.style.right = '-360px';
+        infoPanel.style.right = '-740px';
         toggleBtn.style.right = '0';  // 버튼 오른쪽 끝에 붙임 (패널 닫힘)
         toggleBtn.textContent = '◀';
         toggleBtn.classList.remove('active'); // 기본 색으로
       } else {
         infoPanel.style.right = '0';
-        toggleBtn.style.right = '360px'; // 패널 너비만큼 띄워서 왼쪽에 붙임 (패널 열림)
+        toggleBtn.style.right = '740px'; // 패널 너비만큼 띄워서 왼쪽에 붙임 (패널 열림)
         toggleBtn.textContent = '▶';
         toggleBtn.classList.add('active'); // 노란색으로 변경
       }
