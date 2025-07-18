@@ -79,9 +79,36 @@
       margin-bottom: 30px;
     }
 
-    a, a:link, a:visited, a:hover, a:active {
+    a, a:link, a:visited, a:hover, a:active { /* 전화번호 색 덮기 */
       color: #fff;
       text-decoration: none;
+    }
+
+    .social-links {
+      max-width: 600px;      /* coupon-box와 동일 */
+      margin: 10px auto 20px;
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .btn {
+      flex: 1;                          /* 버튼 두 개가 동일한 너비 */
+      text-align: center;
+      padding: 12px 0;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .insta-btn {
+      background-color: #e1306c;  /* 인스타그램 핑크 */
+    }
+
+    .naver-btn {
+      background-color: #03c75a;  /* 네이버 그린 */
     }
 
 
@@ -283,6 +310,8 @@
       border-bottom: 3px solid #444;
       margin: 8px 0;
     }
+
+    
   </style>
 
 </head>
@@ -294,6 +323,11 @@
   </p>
 
   <div id="coupons-container"></div>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/your_instagram_id" target="_blank" class="btn insta-btn">📸 인스타그램</a>
+      <a href="https://naver.me/your_naver_link" target="_blank" class="btn naver-btn">🟢 네이버 소식</a>
+    </div>
 
   <div id="note-area">
     위 쿠폰은 '챔피언 시흥은계점'에서만 사용이 가능합니다.<br>
