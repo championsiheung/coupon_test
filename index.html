@@ -84,6 +84,11 @@
       text-decoration: none;
     }
 
+    b, b:link, b:visited, b:hover, b:active {
+      color: #000000;
+      text-decoration: none;
+    }
+
     /* 모바일 전용 */
     @media (max-width: 480px) {
       .coupon-box {
@@ -204,7 +209,7 @@
       margin-bottom: 0.1em;
 
       /* padding-left는 박스 패딩 + 번호넓이 만큼 */
-      padding-left: calc(1px + 1em); /* 15px 박스 왼쪽패딩 + 번호 영역 2em */
+      padding-left: calc(15px + 1em); /* 15px 박스 왼쪽패딩 + 번호 영역 2em */
 
       /* 번호를 기준으로 첫줄만 왼쪽으로 당기기 */
       text-indent: calc(-1 * (1px + 1em));
@@ -289,14 +294,14 @@
   <h1>🎉 챔피언 시흥은계점 키즈카페에 오신 걸 환영해요! 😄</h1>
   <p class="subtext">
     귀여운 쿠폰들이 기다리고 있어요💌<br>
-    현장에서 쿠폰을 사용하실 땐 꼭! <strong>모바일이 아닌 <u>'실물 쿠폰'</u></strong>을 보여주세요~
+    현장에서 쿠폰을 사용하실 땐 꼭! <br><strong>모바일이 아닌 <u>'실물 쿠폰'</u></strong>을 보여주세요~
   </p>
 
   <div id="coupons-container"></div>
 
   <div id="note-area">
     위 쿠폰은 '챔피언 시흥은계점'에서만 사용이 가능합니다.<br>
-    문의 사항: <a href="tel:050713649056">0507-1364-9056</a>
+    ☎️문의 사항: <a href="tel:050713649056">0507-1364-9056</a>
   </div>
 
   <!-- ◀ 매장 안내 토글 버튼 -->
@@ -321,7 +326,7 @@
       <li>⓵ 매주 월요일,화요일은 정기 휴무</li>
       <li>⓶ 명절 당일 휴무</li>
       <li>⓷ 공휴일에는 주말 요금제 및 운영시간 적용</li>
-      <li>⓸ 보호자 양말 착용 필수(미지참 시 입장이 제한될 수 있습니다.)</li>
+      <li>⓸ 보호자 양말 착용 필수<br>(미지참 시 입장이 제한될 수 있습니다.)</li>
       <li>⓹ 어린이 논슬립 양말 착용 권장</li>
       <li>⓺ 외부음식물 반입금지</li>
       <li>⓻ 어린이 키 150cm 초과 시 이용 제한</li>
@@ -345,9 +350,9 @@
       <li><span class="weekday-label">🔵평일 할인</span> 1시간 : <span style="font-weight: normal;">10,000원</span></li>
       <!-- 보호자/추가요금/다회권 - 굵기 제거 -->
       <li>- 공통 보호자(음료포함): <span style="font-weight: normal;">7,000원</span></li>
-      <li>- 공통 추가 10분(1인당): <span style="font-weight: normal;">1,500원</span></li>
+      <li>- 추가 10분(아이 1인당): <span style="font-weight: normal;">1,500원</span></li>
       <hr class="divider" />
-      <li>- 다회권구매&기타예약: <span style="font-weight: normal;">매장 문의</span></li>
+      <li>- 다회권구매&예약&기타문의<br><b href="tel:050713649056">📞0507-1364-9056</b></li>
     </ul>
   </div>
 </div>
