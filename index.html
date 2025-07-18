@@ -2,13 +2,14 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>챔피언 시흥은계점 쿠폰</title>
+  <title>챔피언 시흥은계점 쿠폰2</title>
+  <link href="https://fonts.googleapis.com/css2?family=BM+Jua&display=swap" rel="stylesheet">
   <style>
     html, body {
       height: 100%;
       margin: 0;
       padding: 20px;
-      font-family: '맑은 고딕', sans-serif;
+      font-family: 'BM Jua', '맑은 고딕', sans-serif;
       background-color: #35374b;
       color: #fff;
     }
@@ -18,7 +19,7 @@
       color: #fff;
       text-align: center;
       margin-bottom: 10px;
-      margin-top: 20px;  /* 위쪽 공백 추가 */
+      margin-top: 20px;
     }
 
     .subtext {
@@ -64,12 +65,11 @@
       -webkit-user-drag: none;
     }
 
-    /* 특이사항 */
     #note-area {
       margin-top: 5px;
       font-size: 25px;
       font-weight: bold;
-      line-height: 1.4;
+      line-height: 1.1;
       text-align: center;
       white-space: pre-line;
       max-width: 600px;
@@ -77,10 +77,8 @@
       margin-right: auto;
       color: #fff;
       margin-bottom: 30px;
-      line-height: 1.1; /* 간격 좁힘 */
     }
 
-    /* 전화 링크 색상 제거 */
     a, a:link, a:visited, a:hover, a:active {
       color: #fff;
       text-decoration: none;
@@ -105,14 +103,194 @@
         color: #fff;
       }
     }
+
+    /* 매장 안내 버튼 */
+    #info-toggle {
+      position: fixed;                /* 화면에 고정 위치, 스크롤해도 움직이지 않음 */
+      right: 0;                      /* 화면 오른쪽 끝에 붙음 */
+      top: 7%;                     /* 화면 위에서부터 10% 위치에 배치 */
+      transform: translateY(-50%);   /* 자신 높이의 50%만큼 위로 이동 (즉, 기준점이 중앙으로 이동) */
+      background-color: #666a91;     /* 배경색을 짙은 보라빛 회색으로 지정 */
+      color: #ffffff;                /* 글자색을 흰색으로 지정 */
+      padding: 25px 10px;            /* 위아래 12px, 좌우 16px 안쪽 여백 */
+      border-radius: 10px 0 0 10px; /* 좌측 위, 좌측 아래 모서리를 둥글게 (10px 반경) */
+      font-size: 22px;               /* 글자 크기를 22px로 설정 */
+      font-weight: bold;             /* 글자 두껍게 설정 */
+      cursor: pointer;               /* 마우스 올리면 손가락 모양으로 변경 */
+      z-index: 999;                  /* 다른 요소보다 위에 표시 (겹침 우선순위) */
+      transition: background-color 0.3s,right 0.3s; /* 배경색 변경 시 0.3초 동안 부드럽게 변함 */
+    }
+
+    #info-toggle:hover {
+      background-color: #ffdd33;
+    }
+    #info-toggle.active {
+      background-color: #ffdd33 !important; /* 클릭 후 활성화된 상태 */
+      color: #000; /* 글자색도 검정으로 바꾸면 더 잘 보임 */
+    }
+
+    /* 매장 안내창 */
+    #store-info {
+      position: fixed;
+      right: -360px;
+      top: 0;
+      width: 320px;
+      height: 100%;
+      background-color: #fff;
+      color: #333;
+      padding: 0px 20px 20px 20px; /* 위쪽 패딩 10px로 줄임 */
+      box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+      transition: right 0.3s ease-in-out;
+      z-index: 998;
+      font-family: 'BM Jua', sans-serif;
+      overflow-y: auto;
+      border-radius: 20px 0 0 20px;
+    }
+
+    /* 박스 오른쪽 상단에 로고 고정 */
+    #store-logo {
+      position: absolute;
+      bottom: 28px;    /* dkfo에서 10px */
+      right: 15px;  /* 오른쪽에서 10px */
+      width: 100px;  /* 크기 조절 가능 */
+      height: auto;
+      user-select: none;     /* 드래그·선택 방지 */
+      pointer-events: none;  /* 클릭 방지 */
+    }
+
+    #store-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+
+    /* 공통 기본 스타일 */
+    #store-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .section-box {
+      background-color: #f0f4f8;   /* 연한 배경색 */
+      border-radius: 15px;         /* 둥근 모서리 */
+      padding: 20px 15px;          /* 안쪽 여백 */
+      margin-bottom: 0;         /* 아래쪽 간격 */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* 살짝 그림자 */
+      max-width: 600px;            /* 최대 너비 */
+      color: #333;                 /* 텍스트 색상 */
+      font-family: '맑은 고딕', sans-serif;
+      line-height: 1.6; /* 전체 줄 간격 */
+      font-weight: bold;
+    }
+
+    .section-box p strong {
+      font-size: 18px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* 리스트 항목 */
+    .section-box ul {
+      padding-left: 0;  /* ul 기본 들여쓰기 제거 */
+      margin-left: 0;
+      list-style: none;
+    }
+
+    .section-box ul li {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 0.1em;
+
+      /* padding-left는 박스 패딩 + 번호넓이 만큼 */
+      padding-left: calc(1px + 1em); /* 15px 박스 왼쪽패딩 + 번호 영역 2em */
+
+      /* 번호를 기준으로 첫줄만 왼쪽으로 당기기 */
+      text-indent: calc(-1 * (1px + 1em));
+  
+      white-space: normal;
+      word-break: keep-all;
+  }
+
+    /* 섹션 제목 */
+    #store-info p {
+      margin: 0.8em 0 0.3em;
+      font-size: 20px;
+      font-weight: bold;
+      color: #113f6d; /* 진한 파란색 */
+    }
+
+    /* 운영시간 전용 스타일 */
+    .time-section ul li {
+      font-size: 18px;
+      margin-bottom: 0.3em;
+      text-indent: -1.5em;
+      padding-left: 1.5em;
+    }
+
+    /* 이용 안내 전용 스타일 */
+    .notice-section ul li {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 0.5em;
+      padding-left: 1.7em;  /* 이모지+공백 만큼 */
+      text-indent: -1.7em;  /* 첫 줄만 앞으로 당김 */
+      white-space: normal; /* 공백 없애지 않도록 유지 */
+      word-break: keep-all;
+    }
+    
+    .holiday-label {
+      color: red;
+      font-weight: bold;
+    }
+
+    .weekday-label {
+      color: blue;
+      font-weight: bold;
+    }
+
+    /* 요금표 스타일 - 이용안내 스타일과 비슷하게 */
+    #price-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 10px auto 30px auto;
+      max-width: 400px;
+      font-family: '맑은 고딕', sans-serif;
+      color: #444;
+    }
+
+    #price-list li {
+      font-size: 18px;
+      line-height: 1.5;
+      padding-left: 2.5em;       /* 숫자 아이콘 공간 확보 */
+      text-indent: -2.5em;      /* 숫자 아이콘 위치 조정 */
+      margin-bottom: 0.5em;
+      position: relative;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* 마지막 항목 아래선 제거 */
+    #price-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* 문단 굵은선 */
+    .divider {
+      border: none;
+      border-bottom: 3px solid #444;
+      margin: 8px 0;
+    }
   </style>
+
 </head>
 <body>
-  <h1>'챔피언 시흥은계점 키즈카페'오신걸 환영합니다! 😊</h1>
+  <h1>🎉 챔피언 시흥은계점 키즈카페에 오신 걸 환영해요! 😄</h1>
   <p class="subtext">
-  아래 쿠폰은 사용 가능 여부를 보여주며,<br>
-  모바일이 아닌 실물 쿠폰을 제시해야 현장에서 사용 가능합니다.
-</p>
+    귀여운 쿠폰들이 기다리고 있어요💌<br>
+    현장에서 쿠폰을 사용하실 땐 꼭! <strong>모바일이 아닌 <u>'실물 쿠폰'</u></strong>을 보여주세요~
+  </p>
 
   <div id="coupons-container"></div>
 
@@ -121,9 +299,62 @@
     문의 사항: <a href="tel:050713649056">0507-1364-9056</a>
   </div>
 
+  <!-- ◀ 매장 안내 토글 버튼 -->
+  <div id="info-toggle">◀</div>
+
+<!-- 📌 매장 안내 내용 -->
+<div id="store-info">
+   <img src="https://github.com/championsiheung/coupon_test/blob/main/%EB%A1%9C%EA%B3%A0.png?raw=true" alt="매장 로고" id="store-logo" draggable="false" />
+  <h2>📌 매장 안내</h2>
+
+  <p><strong>[매장 운영시간]</strong></p>
+  <div class="section-box">
+    <ul class="time-section">
+      <li>⭐ 평일: 13:00~21:00</li>
+      <li>⭐ 주말&공휴일: 10:30~21:00</li>
+    </ul>
+  </div>
+
+  <p><strong>[이용 안내사항]</strong></p>
+  <div class="section-box">
+    <ul class="notice-section">
+      <li>⓵ 매주 월요일,화요일은 정기 휴무</li>
+      <li>⓶ 명절 당일 휴무</li>
+      <li>⓷ 공휴일에는 주말 요금제 및 운영시간 적용</li>
+      <li>⓸ 보호자 양말 착용 필수(미지참 시 입장이 제한될 수 있습니다.)</li>
+      <li>⓹ 어린이 논슬립 양말 착용 권장</li>
+      <li>⓺ 외부음식물 반입금지</li>
+      <li>⓻ 어린이 키 150cm 초과 시 이용 제한</li>
+      <li>⓼ 아트 이용시 20분 시간 연장</li>
+      <li>⓽ 매장 내 카페 운영: 오후 7:30까지</li>
+      <li>⓾ 칼라스빌딩(본건물 주차장/퇴장 시 정산)</li>
+    </ul>
+  </div>
+
+  <p><strong>[이용금액표]</strong></p>
+  <div class="section-box">
+    <ul class="price-section">
+      <li><span class="holiday-label">🔴주말(공휴일)</span> 종일권 : <span style="font-weight: normal;">30,000원</span></li>
+      <li><span class="holiday-label">🔴주말(공휴일)</span> 3시간 : <span style="font-weight: normal;">22,000원</span></li>
+      <li><span class="holiday-label">🔴주말(공휴일)</span> 2시간 : <span style="font-weight: normal;">17,000원</span></li>
+      <li><span class="holiday-label">🔴주말(공휴일)</span> 1시간 : <span style="font-weight: normal;">11,000원</span></li>
+      <hr class="divider" />
+      <li><span class="weekday-label">🔵평일 할인</span> 종일권 : <span style="font-weight: normal;">29,000원</span></li>
+      <li><span class="weekday-label">🔵평일 할인</span> 3시간 : <span style="font-weight: normal;">21,000원</span></li>
+      <li><span class="weekday-label">🔵평일 할인</span> 2시간 : <span style="font-weight: normal;">16,000원</span></li>
+      <li><span class="weekday-label">🔵평일 할인</span> 1시간 : <span style="font-weight: normal;">10,000원</span></li>
+      <!-- 보호자/추가요금/다회권 - 굵기 제거 -->
+      <li>- 공통 보호자(음료포함): <span style="font-weight: normal;">7,000원</span></li>
+      <li>- 공통 추가 10분(1인당): <span style="font-weight: normal;">1,500원</span></li>
+      <hr class="divider" />
+      <li>- 다회권구매&기타예약: <span style="font-weight: normal;">매장 문의</span></li>
+    </ul>
+  </div>
+</div>
+
   <script>
     const coupons = [
-      { img: "https://raw.githubusercontent.com/championsiheung/new/refs/heads/main/%EB%B6%80%EC%A0%90%EC%9E%A5.gif" }, // GIF 예시
+      { img: "https://raw.githubusercontent.com/championsiheung/new/refs/heads/main/%EB%B6%80%EC%A0%90%EC%9E%A5.gif" },
       { img: "" }, { img: "" }, { img: "" }, { img: "" },
       { img: "" }, { img: "" }, { img: "" }, { img: "" }, { img: "" },
     ];
@@ -151,6 +382,25 @@
     coupons.slice(0, 10).forEach((coupon, idx) => {
       const couponBox = createCouponBox(coupon, idx);
       if (couponBox) container.appendChild(couponBox);
+    });
+
+    // 안내 패널 토글 기능
+    const toggleBtn = document.getElementById('info-toggle');
+    const infoPanel = document.getElementById('store-info');
+
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = infoPanel.style.right === '0px';
+      if (isOpen) {
+        infoPanel.style.right = '-360px';
+        toggleBtn.style.right = '0';  // 버튼 오른쪽 끝에 붙임 (패널 닫힘)
+        toggleBtn.textContent = '◀';
+        toggleBtn.classList.remove('active'); // 기본 색으로
+      } else {
+        infoPanel.style.right = '0';
+        toggleBtn.style.right = '360px'; // 패널 너비만큼 띄워서 왼쪽에 붙임 (패널 열림)
+        toggleBtn.textContent = '▶';
+        toggleBtn.classList.add('active'); // 노란색으로 변경
+      }
     });
   </script>
 </body>
