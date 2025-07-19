@@ -234,21 +234,35 @@
       } 
     }
 
-    /* 매장 안내 버튼 */
+    /* 기존 스타일 유지 */
     #info-toggle {
-      position: fixed;                /* 화면에 고정 위치, 스크롤해도 움직이지 않음 */
-      right: 0;                      /* 화면 오른쪽 끝에 붙음 */
-      top: 5%;                     /* 화면 위에서부터 10% 위치에 배치 */
-      transform: translateY(-50%);   /* 자신 높이의 50%만큼 위로 이동 (즉, 기준점이 중앙으로 이동) */
-      background-color: #666a91;     /* 배경색을 짙은 보라빛 회색으로 지정 */
-      color: #ffffff;                /* 글자색을 흰색으로 지정 */
-      padding: 25px 20px;            /* 위아래 12px, 좌우 16px 안쪽 여백 */
+      position: fixed; /* 화면에 고정 위치, 스크롤해도 움직이지 않음 */              
+      right: 0; /* 화면 오른쪽 끝에 붙음 */                     
+      top: 8%;  /* 화면 위에서부터 8% 위치에 배치 */                   
+      transform: translateY(-50%);  /* 자신 높이의 50%만큼 위로 이동 (즉, 기준점이 중앙으로 이동) */ 
+      background-color: #666a91;   /* 배경색을 짙은 보라빛 회색으로 지정 */   
+      color: #ffffff;   /* 글자색을 흰색으로 지정 */             
+      padding: 30px 20px;  /* 위아래 30px, 좌우 20px 안쪽 여백 */          
       border-radius: 10px 0 0 10px; /* 좌측 위, 좌측 아래 모서리를 둥글게 (10px 반경) */
-      font-size: 30px;               /* 글자 크기를 22px로 설정 */
-      font-weight: bold;             /* 글자 두껍게 설정 */
-      cursor: pointer;               /* 마우스 올리면 손가락 모양으로 변경 */
-      z-index: 999;                  /* 다른 요소보다 위에 표시 (겹침 우선순위) */
-      transition: background-color 0.3s,right 0.3s; /* 배경색 변경 시 0.3초 동안 부드럽게 변함 */
+      font-size: 30px;  /* 글자 크기를 22px로 설정 */             
+      font-weight: bold;  /* 글자 두껍게 설정 */            
+      cursor: pointer;  /* 마우스 올리면 손가락 모양으로 변경 */             
+      z-index: 999; /* 다른 요소보다 위에 표시 (겹침 우선순위) */                 
+      transition: background-color 0.3s, right 0.3s; /* 배경색 변경 시 0.3초 동안 부드럽게 변함 */
+  
+    /* 깜빡임 애니메이션 추가 */
+      animation: blinkYellow 1.5s infinite;
+    }
+
+    /* 노란색 깜빡임 애니메이션 */
+    @keyframes blinkYellow {
+      0%, 100% {
+        background-color: #666a91;
+      }
+      50% {
+        background-color: yellow;
+        color: black; /* 노란 배경에 글자색 검정으로 변경 */
+      }
     }
 
     #info-toggle:hover {
@@ -421,7 +435,7 @@
   <h1>🎉 챔피언 시흥은계점 키즈카페에 오신 걸 환영해요! 😄</h1> 
   <p class="subtext">
     귀여운 쿠폰들이 기다리고 있어요💌<br>
-    현장에서 쿠폰을 사용하실 땐 꼭! <br><strong>모바일이 아닌 <u>'실물 쿠폰'</u></strong>을 보여주세요~
+    현장에서 쿠폰을 사용하실 땐 꼭! <br><strong>휴대폰 캡쳐 또는 저장된 이미지가 아닌 <u>'실물 쿠폰'</u></strong>을 보여주세요~
   </p> 
   <!-- 만료됬을 경우 위 문구 변경 : 죄송하지만, 본 쿠폰은 유효기간이 만료되어 사용하실 수 없습니다.  -->
   
