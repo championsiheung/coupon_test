@@ -19,9 +19,10 @@
     background-color: #35374b;
     color: #fff;
   }
+  
     h1 {
       font-size: 36px;
-      color: #fff;
+      color: #ffb628;
       text-align: center;
       margin-bottom: 10px;
       margin-top: 20px;
@@ -31,7 +32,7 @@
       text-align: center;
       font-size: 28px;
       font-weight: bold;
-      color: #fff;
+      color: #ffffff;
       margin-top: 10px;
       margin-bottom: 30px;
     }
@@ -78,7 +79,7 @@
       text-align: left;    /* 왼쪽 정렬 */
       margin-left: 0;      /* 좌측 마진 제거 */
       margin-right: auto;  /* 우측 마진 유지 */
-      margin-top: 5px;
+      margin-top: 10px;
       font-weight: bold;
       line-height: 1.1;
       margin-bottom: 30px;
@@ -96,27 +97,55 @@
       display: flex;
       gap: 12px;
       justify-content: space-between;
+      
     }
 
     .btn {
-      flex: 2;                          /* 버튼 두 개가 동일한 너비 */
+      flex: 1;
       text-align: center;
-      padding: 20px 0;
-      font-size: 25px;
-      font-weight: bold;
+      padding: 10px 0;
+      font-size: 23px;
+      font-weight: bol0d;
       border-radius: 10px;
       text-decoration: none;
       color: white;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+
+    /* 기본 입체감 */
+      box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2), 0 8px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transform: scale(1); /* 기본 크기 */
+    }
+
+    /* 🖱️ 마우스 오버 시: 살짝 뜨는 느낌 */
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 👇 클릭 시: 가운데로 살짝 눌리는 느낌 */
+    .btn:active {
+      transform: scale(0.96);
+      -shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     }
 
     .insta-btn {
-      background-color: #e1306c;  /* 인스타그램 핑크 */
-      color: white; /* 글자 흰색 */
+      background-color: #fa8bb0;  /* 인스타 핑크 */
+      color: rgb(41, 38, 38) !important;  /* 어두운 텍스트 */
     }
+
     .naver-btn {
-      background-color: #03c75a;  /* 네이버 그린 */
-      color: black !important;   /* 글자 검은색 강제 적용 */
+      background-color: #17df71;  /* 네이버 그린 */
+      color: rgb(41, 38, 38) !important;  /* 어두운 텍스트 */
     }
+
+    .navertalktalk-btn {
+      background-color: #ffffff;  /* 네이버 그린 */
+      color: rgb(41, 38, 38) !important;  /* 어두운 텍스트 */
+    }
+
 
 
     /* 모바일 전용 */
@@ -343,9 +372,19 @@
   <div id="coupons-container"></div>
 
     <div class="social-links">
-      <a href="https://www.instagram.com/champion_siheung/" target="_blank" class="btn insta-btn">시흥은계점 인스타그램 바로가기</a>
-      <a href="https://map.naver.com/p/search/%EC%B1%94%ED%94%BC%EC%96%B8%20%EC%8B%9C%ED%9D%A5/place/1221821767?placePath=/feed?entry=pll&from=map&fromPanelNum=2&timestamp=202507182024&locale=ko&svcName=map_pcv5&searchText=%EC%B1%94%ED%94%BC%EC%96%B8%20%EC%8B%9C%ED%9D%A5&from=map&fromPanelNum=2&timestamp=202507181924&locale=ko&svcName=map_pcv5&searchText=%EC%B1%94%ED%94%BC%EC%96%B8%20%EC%8B%9C%ED%9D%A5&fromNxList=true&searchType=place&c=15.00,0,0,0,dh" target="_blank" class="btn naver-btn">네이버 소식 바로가기</a><br>
-    </div>
+      <a href="https://www.instagram.com/champion_siheung/" target="_blank" class="btn insta-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="인스타그램" width="30" style="vertical-align: middle; margin-right: 10px;">
+      인스타그램
+    </a>
+      <a href="https://map.naver.com/p/search/%EC%B1%94%ED%94%BC%EC%96%B8%20%EC%8B%9C%ED%9D%A5/place/1221821767?placePath=/feed?entry=pll&from=map&fromPanelNum=2&timestamp=202507182024&locale=ko&svcName=map_pcv5&searchText=%EC%B1%94%ED%94%BC%EC%96%B8%20%EC%8B%9C%ED%9D%A5&from=map&fromPanelNum=2&timestamp=202507181924&locale=ko&svcName=map_pcv5&searchText=%EC%B1%94%ED%94%BC%EC%96%B8%20%EC%8B%9C%ED%9D%A5&fromNxList=true&searchType=place&c=15.00,0,0,0,dh" target="_blank" class="btn naver-btn">
+      <img src="https://github.com/championsiheung/coupon_test/blob/main/%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C%EA%B3%A0.png?raw=true" alt="네이버 N 로고" width="30" style="vertical-align: middle; margin-right: 10px;">
+      네이버 소식
+    </a>
+      <a href="https://talk.naver.com/ct/wp6itd5#nafullscreen" target="_blank" class="btn navertalktalk-btn">
+      <img src="https://github.com/championsiheung/coupon_test/blob/main/%ED%86%A1%ED%86%A1.png?raw=true" alt="문의 아이콘" width="30" style="vertical-align: middle; margin-right: 10px;">
+      톡톡 문의
+    </a> 
+
 
   <!-- ◀ 매장 안내 토글 버튼 -->
   <div id="info-toggle">◀</div>
