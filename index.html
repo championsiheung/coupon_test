@@ -132,18 +132,73 @@
     }
 
     .insta-btn {
-      background-color: #fa8bb0;  /* 인스타 핑크 */
-      color: rgb(41, 38, 38) !important;  /* 어두운 텍스트 */
+      background: linear-gradient(to bottom, #fcbfd2, #fa8bb0);  /* 위쪽 밝고 아래 어두운 이중 그라데이션 */
+      color: rgb(41, 38, 38) !important;
+      padding: 12px 24px;
+      border: 1px solid #e56f97;             /* 테두리 강조 */
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),   /* 내부 하이라이트 (빛 효과) */
+        0 4px 8px rgba(0, 0, 0, 0.25);             /* 바깥 입체 그림자 */
+      transition: all 0.2s ease-in-out;
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      position: relative;
+    }
+    .insta-btn:hover {
+      background: linear-gradient(to bottom, #fa8bb0, #fcbfd2);  /* 반전된 그라데이션 */
+      box-shadow: 
+        inset 0 4px 8px rgba(255, 255, 255, 0.5),   /* 더 강한 내부 하이라이트 */
+        0 6px 12px rgba(0, 0, 0, 0.3);             /* 더 깊은 바깥 입체 그림자 */
     }
 
     .naver-btn {
-      background-color: #17df71;  /* 네이버 그린 */
-      color: rgb(41, 38, 38) !important;  /* 어두운 텍스트 */
+      background: linear-gradient(to bottom, #a8f4c3, #17df71);  /* 밝은 초록 → 네이버 그린 */
+      color: rgb(41, 38, 38) !important;
+      padding: 12px 24px;
+      border: 1px solid #14c55e;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.25);
+      transition: all 0.2s ease-in-out;
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .naver-btn:hover {
+      background: linear-gradient(to bottom, #17df71, #a8f4c3);  /* 반전된 그라데이션 */
+      box-shadow:
+        inset 0 4px 8px rgba(255, 255, 255, 0.5),
+        0 6px 12px rgba(0, 0, 0, 0.3);
     }
 
     .navertalktalk-btn {
-      background-color: #ffffff;  /* 네이버 그린 */
-      color: rgb(41, 38, 38) !important;  /* 어두운 텍스트 */
+      background: linear-gradient(to bottom, #ffffff, #e9dcdc);  /* 순백 → 옅은 회색 */
+      color: rgb(41, 38, 38) !important;
+      padding: 12px 24px;
+      border: 1px solid #cccccc;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease-in-out;
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .navertalktalk-btn:hover {
+      background: linear-gradient(to bottom, #e9dcdc, #ffffff);  /* 반전된 그라데이션 */
+      box-shadow:
+        inset 0 4px 8px rgba(255, 255, 255, 0.8),
+        0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
 
@@ -490,7 +545,7 @@
         toggleBtn.classList.remove('active'); // 기본 색으로
       } else {
         infoPanel.style.right = '0';
-        toggleBtn.style.right = '740px'; // 패널 너비만큼 띄워서 왼쪽에 붙임 (패널 열림)
+        toggleBtn.style.right = '720px'; // 패널 너비만큼 띄워서 왼쪽에 붙임 (패널 열림)
         toggleBtn.textContent = '▶';
         toggleBtn.classList.add('active'); // 노란색으로 변경
       }
