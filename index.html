@@ -207,9 +207,9 @@
     /* 매장 안내창 */
     #store-info {
       position: fixed;
-      right: -740px;
+      right: -720px;
       top: 0;
-      width: 700px;
+      width: 680px;
       height: 100%;
       background-color: #ffffff;
       color: #333;
@@ -363,12 +363,13 @@
 
 </head>
 <body>
-  <h1>🎉 챔피언 시흥은계점 키즈카페에 오신 걸 환영해요! 😄</h1>
+  <h1>🎉 챔피언 시흥은계점 키즈카페에 오신 걸 환영해요! 😄</h1> 
   <p class="subtext">
     귀여운 쿠폰들이 기다리고 있어요💌<br>
     현장에서 쿠폰을 사용하실 땐 꼭! <br><strong>모바일이 아닌 <u>'실물 쿠폰'</u></strong>을 보여주세요~
-  </p>
-
+  </p> 
+  <!-- 만료됬을 경우 위 문구 변경 : 죄송하지만, 본 쿠폰은 유효기간이 만료되어 사용하실 수 없습니다.  -->
+  
   <div id="coupons-container"></div>
 
     <div class="social-links">
@@ -525,7 +526,7 @@
       let diffX = currentX - startX;
 
       if (diffX > 50) { // 오른쪽으로 50px 이상 드래그 시 닫기
-        infoPanel.style.right = '-740px';
+        infoPanel.style.right = '-720px';
         toggleBtn.style.right = '0';
       toggleBtn.textContent = '◀';
         toggleBtn.classList.remove('active');
