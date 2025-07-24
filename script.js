@@ -110,11 +110,3 @@ document.addEventListener('contextmenu', function (e) {
   alert('우클릭이 제한되어 있습니다.');
 });
 
-// 🔒 콘솔 감지 (옵션)
-setInterval(() => {
-  const threshold = 160;
-  if (window.outerHeight - window.innerHeight > threshold ||
-      window.outerWidth - window.innerWidth > threshold) {
-    alert("개발자 도구 사용이 감지되었습니다!");
-  }
-}, 1000);
