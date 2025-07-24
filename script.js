@@ -1,10 +1,26 @@
+const expireDateStr = "2025-07-24"; // 날짜
+const expireTimeStr = "19:00:00";   // 시간
+
 const coupons = [
   { img: "https://github.com/championsiheung/coupon_test/blob/main/test2.gif?raw=true" },
-  { img: "" }, { img: "" }, { img: "" }, { img: "" },
-  { img: "" }, { img: "" }, { img: "" }, { img: "" }, { img: "" },
+  { img: "https://github.com/championsiheung/coupon_test/blob/main/로고.png?raw=true" }  // 만료 이미지
 ];
 
+// ✅ 유효 시간 계산 (로컬 시간 기준)
+const [year, month, day] = expireDateStr.split("-").map(Number);
+const [hour, minute, second] = expireTimeStr.split(":").map(Number);
+const expireDate = new Date(year, month - 1, day, hour, minute, second);
+
+const now = new Date();
+const isExpired = now > expireDate;
+
+const messageElement = document.getElementById("coupon-message");
+if (isExpired) {
+  messageElement.innerHTML = `현재 이 쿠폰은 사용만료가 되서 사용할 수 없는 쿠폰입니다.`;
+}
+
 const container = document.getElementById('coupons-container');
+const imageIndex = isExpired ? 1 : 0;
 
 function createCouponBox(coupon, index) {
   if (!coupon.img) return null;
@@ -16,18 +32,18 @@ function createCouponBox(coupon, index) {
   img.className = 'coupon-img';
   img.src = coupon.img;
   img.alt = `쿠폰 이미지 ${index + 1}`;
-  box.appendChild(img);
+  img.draggable = false;
 
   box.addEventListener('contextmenu', e => e.preventDefault());
   box.addEventListener('touchstart', e => e.preventDefault());
 
+  box.appendChild(img);
   return box;
 }
 
-coupons.slice(0, 10).forEach((coupon, idx) => {
-  const couponBox = createCouponBox(coupon, idx);
-  if (couponBox) container.appendChild(couponBox);
-});
+const selectedCoupon = createCouponBox(coupons[imageIndex], imageIndex);
+if (selectedCoupon) container.appendChild(selectedCoupon);
+
 
 // 안내 패널 토글
 const toggleBtn = document.getElementById('info-toggle');
