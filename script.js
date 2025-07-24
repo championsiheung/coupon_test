@@ -12,25 +12,17 @@ function createCouponBox(coupon, index) {
   const box = document.createElement('div');
   box.className = 'coupon-box';
 
-  // 🔄 이미지 태그 대신 배경 이미지 사용
-  box.style.backgroundImage = `url(${coupon.img})`;
-  box.style.backgroundSize = 'contain';
-  box.style.backgroundRepeat = 'no-repeat';
-  box.style.backgroundPosition = 'center';
-  box.style.width = '300px';   // 너비 적절히 조절
-  box.style.height = '150px';  // 높이도 적절히 조절
-  box.style.userSelect = 'none';
-  box.style.webkitTouchCallout = 'none';
-  box.style.webkitUserDrag = 'none';
+  const img = document.createElement('img');
+  img.className = 'coupon-img';
+  img.src = coupon.img;
+  img.alt = `쿠폰 이미지 ${index + 1}`;
+  box.appendChild(img);
 
-  // 이벤트 방지
   box.addEventListener('contextmenu', e => e.preventDefault());
-  box.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
-  box.addEventListener('mousedown', e => e.preventDefault());
+  box.addEventListener('touchstart', e => e.preventDefault());
 
   return box;
 }
-
 
 coupons.slice(0, 10).forEach((coupon, idx) => {
   const couponBox = createCouponBox(coupon, idx);
