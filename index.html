@@ -3,30 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>챔피언 시흥은계점 쿠폰2</title>
-    <script>
-      const ua = navigator.userAgent.toUpperCase();
-      const isInAppBrowser = 
-        ua.includes("KAKAOTALK") ||
-        ua.includes("NAVER") ||
-        ua.includes("FBAN") || 
-        ua.includes("FBAV") || 
-        ua.includes("INSTAGRAM");
-
-      if (isInAppBrowser) {
-        alert("⚠️ 이 페이지는 Safari 또는 Chrome 브라우저에서 열어야 정상적으로 작동합니다.");
-
-        // iOS인 경우 Safari 또는 Chrome으로 이동 유도
-        if (/IPHONE|IPAD|IPOD/.test(ua)) {
-          // 사파리 기본 브라우저로 유도
-          window.location = "https://yourdomain.com"; // 기본 브라우저로 열리게 유도
-        }
-        // Android인 경우 크롬으로 강제 유도
-        else if (/ANDROID/.test(ua)) {
-          // 크롬으로 열도록 시도
-          window.location = "intent://yourdomain.com#Intent;scheme=https;package=com.android.chrome;end";
-        }
-      }
-    </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -111,4 +87,3 @@
   <script src="script.js"></script>
 </body>
 </html>
- 
