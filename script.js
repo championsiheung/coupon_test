@@ -1,26 +1,20 @@
-const expireDateStr = "2025-07-24"; // 날짜
-const expireTimeStr = "19:00:00";   // 시간
+// 안내 패널 토글
+const expireDateStr = "2025-08-31";
+const expireTimeStr = "24:00:00";
 
 const coupons = [
-  { img: "https://github.com/championsiheung/coupon_test/blob/main/test2.gif?raw=true" },
-  { img: "https://github.com/championsiheung/coupon_test/blob/main/로고.png?raw=true" }  // 만료 이미지
+  { img: "https://github.com/championsiheung/coupon_test/blob/main/KakaoTalk_Photo_2025-07-25-01-16-17%20002.gif?raw=true" },
+  { img: "https://github.com/championsiheung/coupon_test/blob/main/KakaoTalk_Photo_2025-07-25-01-16-17%20001.gif?raw=true" }
 ];
 
-// ✅ 유효 시간 계산 (로컬 시간 기준)
+const container = document.getElementById('coupons-container');
+const messageElement = document.getElementById("coupon-message");
+const guideElement = document.getElementById("coupon-guide");
+const infoElement = document.getElementById("expire-info");
+
 const [year, month, day] = expireDateStr.split("-").map(Number);
 const [hour, minute, second] = expireTimeStr.split(":").map(Number);
 const expireDate = new Date(year, month - 1, day, hour, minute, second);
-
-const now = new Date();
-const isExpired = now > expireDate;
-
-const messageElement = document.getElementById("coupon-message");
-if (isExpired) {
-  messageElement.innerHTML = `현재 이 쿠폰은 사용만료가 되서 사용할 수 없는 쿠폰입니다.`;
-}
-
-const container = document.getElementById('coupons-container');
-const imageIndex = isExpired ? 1 : 0;
 
 function createCouponBox(coupon, index) {
   if (!coupon.img) return null;
@@ -41,11 +35,82 @@ function createCouponBox(coupon, index) {
   return box;
 }
 
-const selectedCoupon = createCouponBox(coupons[imageIndex], imageIndex);
-if (selectedCoupon) container.appendChild(selectedCoupon);
+let selectedCoupon = null;
+function updateCoupon(isExpired) {
+  if (selectedCoupon) container.removeChild(selectedCoupon);
+  const imageIndex = isExpired ? 1 : 0;
+  selectedCoupon = createCouponBox(coupons[imageIndex], imageIndex);
+  if (selectedCoupon) container.appendChild(selectedCoupon);
+}
+
+function getTimeRemaining(endTime) {
+  const now = new Date();
+  const total = endTime.getTime() - now.getTime();
+
+  if (total <= 0) return null;
+
+  const seconds = Math.floor((total / 1000) % 60);
+  const minutes = Math.floor((total / 1000 / 60) % 60);
+  const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+  const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+  const pad = (n) => n.toString().padStart(2, '0');
+
+  return days > 0
+    ? `${days}일 ${pad(hours)}시간 ${pad(minutes)}분 ${pad(seconds)}초`
+    : `${pad(hours)}시간 ${pad(minutes)}분 ${pad(seconds)}초`;
+}
+
+const titleElement = document.getElementById("main-title");  // h1 요소
+
+function update() {
+  const now = new Date();
+  const isExpired = now > expireDate;
+
+  updateCoupon(isExpired);
+
+  const titleWrapper = document.getElementById("title-wrapper");
+  const titleElement = document.getElementById("main-title");
+
+  if (isExpired) {
+    messageElement.style.color = "rgba(255, 132, 132, 1)";  // 빨간색 적용
+    messageElement.innerHTML = `<span style="color: white;">현재 이 쿠폰은 </span><u>'사용만료'</u><span style="color: white;">가 되서 사용할 수 없는 쿠폰입니다.</span>`;
+    guideElement.style.display = "none";
+    infoElement.innerHTML = `<span style="color:#ff4444; font-weight:bold;">유효기간이 만료되었습니다.</span>`;
+
+    if (titleWrapper) titleWrapper.style.paddingTop = "1px"; // 여백 추가
+    if (titleElement) {
+      titleElement.style.color = "#ffffffff";  // 글자색 변경
+      titleElement.style.fontSize = "36px"; // 글자 크기 변경
+    }
+  } else {
+    messageElement.style.color = ""; // 스타일 초기화
+    messageElement.innerHTML = "";
+    guideElement.style.display = "block";
+
+    const timeStr = getTimeRemaining(expireDate);
+    if (timeStr) {
+      infoElement.innerHTML = `
+        <span style="color:#00cc99; font-weight:bold;">유효기간: ${expireDateStr}</span>
+        <span style="margin-left: 20px; color:#ff6b6b; font-weight:bold;">남은시간: ${timeStr}</span>
+      `;
+    }
+
+    if (titleWrapper) titleWrapper.style.paddingTop = "0";
+  }
+}
+
+update();
+setInterval(update, 1000);
+
+// 매장안내 토글
+document.getElementById("info-toggle").addEventListener("click", () => {
+  const panel = document.getElementById("store-info");
+  panel.style.display = panel.style.display === "block" ? "none" : "block";
+});
 
 
-// 안내 패널 토글
+
 const toggleBtn = document.getElementById('info-toggle');
 const infoPanel = document.getElementById('store-info');
 
@@ -53,10 +118,12 @@ toggleBtn.addEventListener('click', () => {
   const isOpen = infoPanel.style.right === '0px';
   if (isOpen) {
     infoPanel.style.right = '-740px';
+    infoPanel.style.display = 'none';   // 👈 추가
     toggleBtn.style.right = '0';
     toggleBtn.textContent = '◀';
     toggleBtn.classList.remove('active');
   } else {
+    infoPanel.style.display = 'block';  // 👈 추가
     infoPanel.style.right = '0';
     toggleBtn.style.right = '720px';
     toggleBtn.textContent = '▶';
