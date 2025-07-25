@@ -3,7 +3,7 @@ const expireDateStr = "2025-08-31";
 const expireTimeStr = "24:00:00";
 
 const coupons = [
-  { img: "https://github.com/championsiheung/coupon_test/blob/main/KakaoTalk_Photo_2025-07-25-01-16-17%20002.gif?raw=true" },
+  { img: "https://github.com/championsiheung/coupon_test/blob/main/coupon%5B1%5D.gif?raw=true" },
   { img: "https://github.com/championsiheung/coupon_test/blob/main/KakaoTalk_Photo_2025-07-25-01-16-17%20001.gif?raw=true" }
 ];
 
