@@ -1,5 +1,5 @@
 // 안내 패널 토글
-const expireDateStr = "2025-08-31";
+const expireDateStr = "2025-08-115";
 const expireTimeStr = "24:00:00";
 
 const coupons = [
